@@ -33,7 +33,7 @@ const movies = [
 
 const Main = () => {
   return (
-    <div className="p-6  container mx-auto">
+    <div className="p-6 container mx-auto">
       <div className="flex justify-between items-center text-white text-xl mb-4">
         <h2 className="font-semibold">Siyahı</h2>
         <nav className="space-x-4 text-sm">
@@ -46,15 +46,16 @@ const Main = () => {
       </div>
 
       <div className="flex justify-between items-center mb-6 text-sm text-gray-300">
-        <select className="bg-gray-700 p-2 rounded">
-          {" "}
+        <select className="bg-gray-700 p-2 rounded w-84 text-center">
           <option>Dil</option>{" "}
         </select>
-        <select className="bg-gray-700 p-2 rounded">
-          {" "}
-          <option>Kinoteatr</option>{" "}
+        <select className="bg-gray-700 p-2 rounded w-84 text-center">
+          <option>Kinoteatr</option>
         </select>
-        <input type="date" className="bg-gray-700 p-2 rounded" />
+        <input
+          type="date"
+          className="bg-gray-700 p-2 rounded w-84 text-center"
+        />
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
