@@ -1,5 +1,3 @@
-import React from "react";
-
 const MovieCard = ({ title, date, age, flag, img }) => (
   <div className="bg-gray-700 rounded overflow-hidden shadow-lg">
     <img src={img} alt={title} className="w-full h-72 object-cover" />
