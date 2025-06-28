@@ -4,6 +4,7 @@ import MovieCard from "./MovieCard";
 const Main = () => {
   const [data, setData] = useState([]);
   const [lang, setLang] = useState("Dil");
+  const [date, setDate] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:3000/movies")
@@ -12,9 +13,14 @@ const Main = () => {
       .catch((error) => console.error("Error fetching movies:", error));
   }, []);
 
-  const filteredData = data.filter(
-    (movie) => lang === "Dil" || movie.languages.includes(lang)
-  );
+  const filteredData = data
+    .filter((movie) => lang === "Dil" || movie.languages.includes(lang))
+    .filter(
+      (movie) =>
+        !date ||
+        (new Date(date) <= new Date(movie.lastScreeningDate) &&
+          new Date(date) >= new Date(movie.firstScreeningDate))
+    );
 
   return (
     <div className="p-6 container mx-auto">
@@ -46,6 +52,7 @@ const Main = () => {
           <option>Kinoteatr</option>
         </select>
         <input
+          onChange={(e) => setDate(e.target.value)}
           type="date"
           className="bg-gray-700 p-2 rounded w-84 text-center"
         />
