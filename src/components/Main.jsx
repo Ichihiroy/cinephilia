@@ -3,6 +3,7 @@ import MovieCard from "./MovieCard";
 
 const Main = () => {
   const [data, setData] = useState([]);
+  const [lang, setLang] = useState("Dil");
 
   useEffect(() => {
     fetch("http://localhost:3000/movies")
@@ -10,6 +11,10 @@ const Main = () => {
       .then((data) => setData(data))
       .catch((error) => console.error("Error fetching movies:", error));
   }, []);
+
+  const filteredData = data.filter(
+    (movie) => lang === "Dil" || movie.languages.includes(lang)
+  );
 
   return (
     <div className="p-6 container mx-auto">
@@ -25,11 +30,17 @@ const Main = () => {
       </div>
 
       <div className="flex justify-between items-center mb-6 text-sm text-gray-300 gap-3">
-        <select className="bg-gray-700 p-2 rounded w-84 text-center">
-          <option disabled>Dil</option>
-          <option>Dil</option>
-          <option>Dil</option>
-          <option>Dil</option>
+        <select
+          className="bg-gray-700 p-2 rounded w-84 text-center"
+          onChange={(e) => setLang(e.target.value)}
+        >
+          <option disabled selected>
+            Dil
+          </option>
+          <option>AZ</option>
+          <option>TR</option>
+          <option>RU</option>
+          <option>EN</option>
         </select>
         <select className="bg-gray-700 p-2 rounded w-84 text-center">
           <option>Kinoteatr</option>
@@ -41,7 +52,7 @@ const Main = () => {
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-        {data?.map((movie, index) => (
+        {filteredData?.map((movie, index) => (
           <MovieCard key={index} {...movie} />
         ))}
       </div>
