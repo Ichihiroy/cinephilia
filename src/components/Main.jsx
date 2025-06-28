@@ -4,7 +4,7 @@ import MovieCard from "./MovieCard";
 const Main = () => {
   const [data, setData] = useState([]);
   const [lang, setLang] = useState("Dil");
-  const [theatre, setTheatre] = useState(new Set());
+  const [theatre, setTheatre] = useState([]);
   const [date, setDate] = useState("");
 
   useEffect(() => {
@@ -17,9 +17,7 @@ const Main = () => {
   useEffect(() => {
     fetch("http://localhost:3000/theatre")
       .then((response) => response.json())
-      .then((data) =>
-        setTheatre(new Set(data.map((theatre) => theatre.theatreTitle)))
-      )
+      .then((data) => setTheatre(data))
       .catch((error) => console.error("Error fetching theatre data:", error));
   }, []);
 
@@ -68,11 +66,13 @@ const Main = () => {
           <option disabled selected>
             Kinoteatr
           </option>
-          {[...theatre].map((theatreName, index) => (
-            <option key={index} value={theatreName}>
-              {theatreName}
-            </option>
-          ))}
+          {[...new Set(theatre?.map((theatre) => theatre.theatreTitle))].map(
+            (theatreName, index) => (
+              <option key={index} value={theatreName}>
+                {theatreName}
+              </option>
+            )
+          )}
         </select>
         <input
           value={date}
