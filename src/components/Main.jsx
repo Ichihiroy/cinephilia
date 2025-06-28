@@ -22,6 +22,11 @@ const Main = () => {
           new Date(date) >= new Date(movie.firstScreeningDate))
     );
 
+  function clear() {
+    setLang("Dil");
+    setDate("");
+  }
+
   return (
     <div className="p-6 container mx-auto">
       <div className="flex justify-between items-center text-white text-xl mb-4">
@@ -37,6 +42,7 @@ const Main = () => {
 
       <div className="flex justify-between items-center mb-6 text-sm text-gray-300 gap-3">
         <select
+          value={lang}
           className="bg-gray-700 p-2 rounded w-84 text-center"
           onChange={(e) => setLang(e.target.value)}
         >
@@ -52,10 +58,17 @@ const Main = () => {
           <option>Kinoteatr</option>
         </select>
         <input
+          value={date}
           onChange={(e) => setDate(e.target.value)}
           type="date"
           className="bg-gray-700 p-2 rounded w-84 text-center"
         />
+        <button
+          className="bg-red-700 p-2 rounded w-24 font-bold text-center text-black hover:bg-red-900 transition-colors duration-300"
+          onClick={clear}
+        >
+          Təmizlə
+        </button>
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
