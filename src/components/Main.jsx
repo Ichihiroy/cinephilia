@@ -5,6 +5,7 @@ const Main = () => {
   const [data, setData] = useState([]);
   const [lang, setLang] = useState("Dil");
   const [theatre, setTheatre] = useState([]);
+  const [theatreValue, setTheatreValue] = useState("");
   const [date, setDate] = useState("");
 
   useEffect(() => {
@@ -62,7 +63,10 @@ const Main = () => {
           <option>RU</option>
           <option>EN</option>
         </select>
-        <select className="bg-gray-700 p-2 rounded w-84 text-center">
+        <select
+          className="bg-gray-700 p-2 rounded w-84 text-center"
+          onChange={(e) => setTheatreValue(e.target.value)}
+        >
           <option disabled selected>
             Kinoteatr
           </option>
