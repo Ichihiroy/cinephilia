@@ -22,7 +22,14 @@ const Main = () => {
       .catch((error) => console.error("Error fetching theatre data:", error));
   }, []);
 
-  let filteredData = data
+  let filteredData =
+    theatreValue !== "Kinoteatr"
+      ? theatre
+          .filter((t) => t.theatreTitle === theatreValue)
+          .map((t) => t.movie)
+      : data;
+
+  filteredData = filteredData
     .filter((movie) => lang === "Dil" || movie.languages.includes(lang))
     .filter(
       (movie) =>
@@ -30,13 +37,6 @@ const Main = () => {
         (new Date(date) <= new Date(movie.lastScreeningDate) &&
           new Date(date) >= new Date(movie.firstScreeningDate))
     );
-
-  filteredData =
-    theatreValue !== "Kinoteatr"
-      ? theatre
-          .filter((t) => t.theatreTitle === theatreValue)
-          .map((t) => t.movie)
-      : filteredData;
 
   function clear() {
     setLang("Dil");
