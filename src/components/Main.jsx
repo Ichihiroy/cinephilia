@@ -5,7 +5,7 @@ const Main = () => {
   const [data, setData] = useState([]);
   const [lang, setLang] = useState("Dil");
   const [theatre, setTheatre] = useState([]);
-  const [theatreValue, setTheatreValue] = useState("");
+  // const [theatreValue, setTheatreValue] = useState("");
   const [date, setDate] = useState("");
 
   useEffect(() => {
