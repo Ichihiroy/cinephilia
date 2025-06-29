@@ -5,7 +5,7 @@ const Main = () => {
   const [data, setData] = useState([]);
   const [lang, setLang] = useState("Dil");
   const [theatre, setTheatre] = useState([]);
-  // const [theatreValue, setTheatreValue] = useState("");
+  const [theatreValue, setTheatreValue] = useState("Kinoteatr");
   const [date, setDate] = useState("");
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const Main = () => {
       .catch((error) => console.error("Error fetching theatre data:", error));
   }, []);
 
-  const filteredData = data
+  let filteredData = data
     .filter((movie) => lang === "Dil" || movie.languages.includes(lang))
     .filter(
       (movie) =>
@@ -31,9 +31,17 @@ const Main = () => {
           new Date(date) >= new Date(movie.firstScreeningDate))
     );
 
+  filteredData =
+    theatreValue !== "Kinoteatr"
+      ? theatre
+          .filter((t) => t.theatreTitle === theatreValue)
+          .map((t) => t.movie)
+      : filteredData;
+
   function clear() {
     setLang("Dil");
     setDate("");
+    setTheatreValue("Kinoteatr");
   }
 
   return (
@@ -55,21 +63,18 @@ const Main = () => {
           className="bg-gray-700 p-2 rounded w-84 text-center"
           onChange={(e) => setLang(e.target.value)}
         >
-          <option disabled selected>
-            Dil
-          </option>
+          <option disabled>Dil</option>
           <option>AZ</option>
           <option>TR</option>
           <option>RU</option>
           <option>EN</option>
         </select>
         <select
+          value={theatreValue}
           className="bg-gray-700 p-2 rounded w-84 text-center"
           onChange={(e) => setTheatreValue(e.target.value)}
         >
-          <option disabled selected>
-            Kinoteatr
-          </option>
+          <option disabled>Kinoteatr</option>
           {[...new Set(theatre?.map((theatre) => theatre.theatreTitle))].map(
             (theatreName, index) => (
               <option key={index} value={theatreName}>
