@@ -13,9 +13,7 @@ const Main = () => {
       .then((response) => response.json())
       .then((data) => setData(data))
       .catch((error) => console.error("Error fetching movies:", error));
-  }, []);
 
-  useEffect(() => {
     fetch("http://localhost:3001/theatre")
       .then((response) => response.json())
       .then((data) => setTheatre(data))
