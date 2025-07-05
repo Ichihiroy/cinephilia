@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import MovieCard from "./MovieCard";
+import MovieCard from "../components/MovieCard";
 
 const Main = () => {
   const [data, setData] = useState([]);
