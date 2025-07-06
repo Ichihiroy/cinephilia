@@ -27,8 +27,6 @@ const Header = () => (
         <FaChevronDown size={12} />
       </div>
     </nav>
-
-    <Slider />
   </header>
 );
 
