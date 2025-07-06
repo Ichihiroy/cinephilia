@@ -19,4 +19,13 @@ const getAllTheatres = async () => {
   }
 };
 
-export { getAllMovies, getAllTheatres };
+const getMovieById = async (id) => {
+  try {
+    const res = await axios.get(`${API_URL}/movies/${id}`);
+    return res.data;
+  } catch (err) {
+    console.error("Error fetching movie by ID:", err);
+  }
+};
+
+export { getAllMovies, getAllTheatres, getMovieById };

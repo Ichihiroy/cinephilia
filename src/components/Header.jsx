@@ -1,6 +1,4 @@
-import React from "react";
 import { FaChevronDown } from "react-icons/fa";
-import Slider from "./Slider";
 
 const Header = () => (
   <header>
