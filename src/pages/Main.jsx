@@ -10,12 +10,12 @@ const Main = () => {
   const [date, setDate] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:3001/movies")
+    fetch("https://cinedata-wwue.onrender.com/movies")
       .then((response) => response.json())
       .then((data) => setData(data))
       .catch((error) => console.error("Error fetching movies:", error));
 
-    fetch("http://localhost:3001/theatre")
+    fetch("https://cinedata-wwue.onrender.com/theatre")
       .then((response) => response.json())
       .then((data) => setTheatre(data))
       .catch((error) => console.error("Error fetching theatre data:", error));

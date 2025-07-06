@@ -4,11 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"npm run start:api\" \"vite\"",
+    "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "start:api": "json-server db.json --port 3001"
+    "preview": "vite preview"
   },
   "dependencies": {
     "react": "^19.1.0",
