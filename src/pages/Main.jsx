@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import MovieCard from "../components/MovieCard";
 import Slider from "../components/Slider";
+import { getAllMovies, getAllTheatres } from "../services/MovieServices";
 
 const Main = () => {
   const [data, setData] = useState([]);
@@ -10,15 +11,8 @@ const Main = () => {
   const [date, setDate] = useState("");
 
   useEffect(() => {
-    fetch("https://cinedata-wwue.onrender.com/movies")
-      .then((response) => response.json())
-      .then((data) => setData(data))
-      .catch((error) => console.error("Error fetching movies:", error));
-
-    fetch("https://cinedata-wwue.onrender.com/theatre")
-      .then((response) => response.json())
-      .then((data) => setTheatre(data))
-      .catch((error) => console.error("Error fetching theatre data:", error));
+    getAllMovies().then((data) => setData(data));
+    getAllTheatres().then((data) => setTheatre(data));
   }, []);
 
   let filteredData =
