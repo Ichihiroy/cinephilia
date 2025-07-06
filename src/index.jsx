@@ -4,12 +4,17 @@ import "./index.css";
 import App from "./layout/App";
 import Admin from "./layout/Admin";
 import Details from "./pages/Details";
+import Main from "./pages/Main";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     children: [
+      {
+        index: true,
+        element: <Main />,
+      },
       {
         path: "movie/:id",
         element: <Details />,
