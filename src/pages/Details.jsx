@@ -1,6 +1,6 @@
 import { useParams } from "react-router";
 import { getMovieById } from "../services/MovieServices";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function getFlagEmoji(code) {
   return code
@@ -13,9 +13,12 @@ function getFlagEmoji(code) {
 const Details = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
-  getMovieById(id).then((data) => {
-    setMovie(data);
-  });
+
+  useEffect(() => {
+    getMovieById(id).then((data) => {
+      setMovie(data);
+    });
+  }, []);
 
   return (
     <div className="bg-gray-800 text-white min-h-screen p-6">
@@ -86,7 +89,6 @@ const Details = () => {
             width="100%"
             height="280"
             src={movie?.youtubeUrl}
-            title="Superman Trailer"
             allowFullScreen
             className="rounded-xl"
           ></iframe>
