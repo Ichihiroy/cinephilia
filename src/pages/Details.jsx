@@ -22,7 +22,7 @@ const Details = () => {
   }, [id]);
 
   return (
-    <div className="bg-gray-800 text-white min-h-screen p-4 sm:p-6">
+    <div className="bg-gray-800 text-white min-h-screen p-4 sm:p-6 ">
       <div className="flex flex-col lg:flex-row gap-10">
         <div className="flex-shrink-0 mx-auto lg:mx-0">
           <img
@@ -113,7 +113,7 @@ const Details = () => {
         )}
       </div>
 
-      <div className="mt-10 text-sm text-gray-300 max-w-4xl mx-auto">
+      <div className="mt-10 text-sm text-gray-300 max-w-4xl">
         <p>{movie?.description}</p>
       </div>
 

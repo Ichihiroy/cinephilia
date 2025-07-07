@@ -5,6 +5,7 @@ import App from "./layout/App";
 import Admin from "./layout/Admin";
 import Details from "./pages/Details";
 import Main from "./pages/Main";
+import Theatre from "./pages/Theatre";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
       {
         path: "movie/:id",
         element: <Details />,
+      },
+      {
+        path: "theatre/:id",
+        element: <Theatre />,
       },
     ],
   },

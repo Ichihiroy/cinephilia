@@ -1,5 +1,6 @@
 import { FaChevronDown, FaBars, FaTimes } from "react-icons/fa";
 import { useState } from "react";
+import { Link } from "react-router";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -8,7 +9,9 @@ const Header = () => {
     <header className="bg-gray-800 shadow-md text-white">
       <nav className="flex justify-between items-center px-6 py-4 md:px-12">
         <div className="flex items-center space-x-6">
-          <img src="./img/logo.svg" alt="Park Cinema Logo" className="h-8" />
+          <Link to="/">
+            <img src="./img/logo.svg" alt="Park Cinema Logo" className="h-8" />
+          </Link>
 
           <div className="hidden md:flex space-x-6 text-sm">
             <a href="#" className="hover:underline">

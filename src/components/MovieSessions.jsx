@@ -1,31 +1,37 @@
+import { useNavigate } from "react-router";
+
 const MovieSessions = ({ theatre }) => {
   const { time, theatreTitle, hallTitle, type } = theatre;
 
-  return (
-    <div className="bg-gray-600 text-white flex items-center justify-between px-6 py-3 rounded-md border border-gray-700 mb-4">
-      <span className="text-sm">{time}</span>
+  const navigate = useNavigate();
 
-      <div className="text-sm flex-1 text-center">
+  return (
+    <div className="bg-gray-600 text-white flex flex-col sm:flex-row sm:items-center sm:justify-between px-4 sm:px-6 py-3 rounded-md border border-gray-700 mb-4 space-y-3 sm:space-y-0">
+      <span className="text-sm sm:text-base">{time}</span>
+
+      <div className="text-sm sm:text-base text-center sm:flex-1 sm:text-center">
         <span className="font-medium">{theatreTitle}</span>
         <span className="mx-1">|</span>
         <span>{hallTitle}</span>
       </div>
 
-      <div className="flex items-center space-x-4">
+      <div className="flex flex-wrap sm:flex-nowrap items-center justify-center sm:justify-end gap-2 sm:gap-4">
         <span className="text-sm">{type.slice(1)}</span>
-        <span>
-          <img
-            src="https://flagcdn.com/w40/ru.png"
-            alt="Russian"
-            className="w-5 h-5 rounded-full"
-          />
-        </span>
 
-        <span className="border border-white rounded-full px-2 py-0.5 text-xs">
+        <img
+          src="https://flagcdn.com/w40/ru.png"
+          alt="Russian"
+          className="w-5 h-5 rounded-full"
+        />
+
+        <span className="border border-white rounded-full px-2 py-0.5 text-xs whitespace-nowrap">
           Altyazı: AZ
         </span>
 
-        <button className="bg-red-700 hover:bg-red-800 text-white text-sm px-4 py-1 rounded-full">
+        <button
+          onClick={() => navigate("/theatre/" + theatre.id)}
+          className="bg-red-700 hover:bg-red-800 text-white text-sm px-4 py-1 rounded-full"
+        >
           Bilet Al
         </button>
       </div>

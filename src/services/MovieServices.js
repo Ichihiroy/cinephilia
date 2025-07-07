@@ -28,4 +28,13 @@ const getMovieById = async (id) => {
   }
 };
 
-export { getAllMovies, getAllTheatres, getMovieById };
+const getTheatreById = async (id) => {
+  try {
+    const res = await axios.get(`${API_URL}/theatre/${id}`);
+    return res.data;
+  } catch (err) {
+    console.error("Error fetching theatres by ID:", err);
+  }
+};
+
+export { getAllMovies, getAllTheatres, getMovieById, getTheatreById };
