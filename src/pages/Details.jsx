@@ -1,5 +1,6 @@
 import { useParams } from "react-router";
-import { getMovieById } from "../services/MovieServices";
+import { getAllTheatres, getMovieById } from "../services/movieServices";
+import MovieSessions from "../components/MovieSessions";
 import { useState, useEffect } from "react";
 
 function getFlagEmoji(code) {
@@ -13,16 +14,23 @@ function getFlagEmoji(code) {
 const Details = () => {
   const { id } = useParams();
   const [movie, setMovie] = useState(null);
+  const [theatres, setTheatres] = useState([]);
 
   useEffect(() => {
     getMovieById(id).then((data) => {
       setMovie(data);
     });
+
+    getAllTheatres().then((theatres) => {
+      setTheatres(theatres);
+    });
   }, []);
+
+  console.log(theatres);
 
   return (
     <div className="bg-gray-800 text-white min-h-screen p-6">
-      <div className="flex flex-col lg:flex-row gap-10">
+      <div className="flex flex-col lg:flex-row gap-10 p-6">
         <div className="flex-shrink-0">
           <img
             src={movie?.image}
@@ -72,9 +80,9 @@ const Details = () => {
           <p>Ölkə: {movie?.country}</p>
           <p>Rejissor: {movie?.director}</p>
           <ul className="flex ">
-            Aktyorlar:{" "}
+            Aktyorlar:
             {movie?.actors.map((actor, i) => (
-              <li key={i}> {actor},</li>
+              <li key={i}> {actor} </li>
             ))}
           </ul>
           <p>
@@ -108,8 +116,16 @@ const Details = () => {
         </div>
       </div>
 
-      <div className="mt-10 text-sm text-gray-300 max-w-4xl">
+      <div className="mt-10 text-sm text-gray-300 max-w-4xl p-6">
         <p>{movie?.description}</p>
+      </div>
+
+      <div className="p-6 rounded-xl mt-10">
+        {theatres.length > 0 && movie
+          ? theatres
+              .filter((theatre) => theatre.movie.id == id)
+              .map((theatre) => <MovieSessions theatre={theatre} />)
+          : null}
       </div>
     </div>
   );

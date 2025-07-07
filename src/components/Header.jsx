@@ -2,7 +2,7 @@ import { FaChevronDown } from "react-icons/fa";
 
 const Header = () => (
   <header>
-    <nav className="flex justify-between items-center px-8 py-4 bg-black shadow-md">
+    <nav className="flex justify-between items-center px-8 py-4 bg-gray-800 shadow-md">
       <div className="flex items-center space-x-4">
         <img src="./img/logo.svg" alt="Park Cinema Logo" className="h-8" />
         <nav className="space-x-6 text-sm">

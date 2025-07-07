@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import MovieCard from "../components/MovieCard";
 import Slider from "../components/Slider";
-import { getAllMovies, getAllTheatres } from "../services/MovieServices";
+import { getAllMovies, getAllTheatres } from "../services/movieServices";
 
 const Main = () => {
   const [data, setData] = useState([]);
