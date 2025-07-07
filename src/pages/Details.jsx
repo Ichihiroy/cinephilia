@@ -73,11 +73,22 @@ const Details = () => {
           <p>Rejissor: {movie?.director}</p>
           <ul className="flex ">
             Aktyorlar:{" "}
-            {movie?.actors.map((actor) => (
-              <li> {actor},</li>
+            {movie?.actors.map((actor, i) => (
+              <li key={i}> {actor},</li>
             ))}
           </ul>
-          <p>Yaş Həddi: 16+</p>
+          <p>
+            Yaş Həddi:{" "}
+            {movie?.ageLimit === "SIXTEEN" ? (
+              <span className="text-xs">16+</span>
+            ) : movie?.ageLimit === "TWELVE" ? (
+              <span className="text-xs">12+</span>
+            ) : movie?.ageLimit === "EIGHTEEN" ? (
+              <span className="text-xs">18+</span>
+            ) : movie?.ageLimit === "SIX" ? (
+              <span className="text-xs">6+</span>
+            ) : null}
+          </p>
           <p>
             Nümayiş Tarixi:
             {new Date(movie?.firstScreeningDate).toLocaleDateString("en-GB")}
@@ -85,13 +96,15 @@ const Details = () => {
         </div>
 
         <div className="w-full lg:w-[500px]">
-          <iframe
-            width="100%"
-            height="280"
-            src={movie?.youtubeUrl}
-            allowFullScreen
-            className="rounded-xl"
-          ></iframe>
+          {movie?.youtubeUrl ? (
+            <iframe
+              width="100%"
+              height="280"
+              src={movie.youtubeUrl}
+              allowFullScreen
+              className="rounded-xl"
+            ></iframe>
+          ) : null}
         </div>
       </div>
 
