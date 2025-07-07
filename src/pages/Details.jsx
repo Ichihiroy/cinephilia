@@ -17,115 +17,112 @@ const Details = () => {
   const [theatres, setTheatres] = useState([]);
 
   useEffect(() => {
-    getMovieById(id).then((data) => {
-      setMovie(data);
-    });
-
-    getAllTheatres().then((theatres) => {
-      setTheatres(theatres);
-    });
-  }, []);
-
-  console.log(theatres);
+    getMovieById(id).then(setMovie);
+    getAllTheatres().then(setTheatres);
+  }, [id]);
 
   return (
-    <div className="bg-gray-800 text-white min-h-screen p-6">
-      <div className="flex flex-col lg:flex-row gap-10 p-6">
-        <div className="flex-shrink-0">
+    <div className="bg-gray-800 text-white min-h-screen p-4 sm:p-6">
+      <div className="flex flex-col lg:flex-row gap-10">
+        <div className="flex-shrink-0 mx-auto lg:mx-0">
           <img
             src={movie?.image}
-            alt="Superman Poster"
-            className="rounded-xl max-w-xs shadow-lg"
+            alt={`${movie?.name} Poster`}
+            className="rounded-xl max-w-xs w-full shadow-lg"
           />
         </div>
 
-        <div className="flex-1 space-y-3">
+        <div className="flex-1 space-y-4">
           <h1 className="text-3xl font-bold">{movie?.name}</h1>
-          <p className="text-sm text-gray-400">{movie?.genres[0].title}</p>
+          <p className="text-sm text-gray-400">{movie?.genres?.[0]?.title}</p>
 
-          <div className="flex gap-2 items-center">
-            <p>Dil:</p>
-            <span>
-              {movie?.languages.map((lang, i) =>
-                lang == "EN" ? (
-                  <span key={i} className="mr-1">
-                    {getFlagEmoji("GB")}
-                  </span>
-                ) : (
-                  <span key={i} className="mr-1">
-                    {getFlagEmoji(lang)}
-                  </span>
-                )
-              )}
-            </span>
-          </div>
-
-          <div className="flex gap-2 items-center">
-            <p>Altyazı:</p>
-            {movie?.subtitles.map((sub, i) =>
-              sub == "EN" ? (
-                <span key={i} className="mr-1">
-                  {getFlagEmoji("GB")}
-                </span>
-              ) : (
-                <span key={i} className="mr-1">
-                  {getFlagEmoji(sub)}
-                </span>
-              )
-            )}
-          </div>
-
-          <p>Müddət: {movie?.duration} dq</p>
-          <p>İl: {movie?.firstScreeningDate.slice(0, 4)}</p>
-          <p>Ölkə: {movie?.country}</p>
-          <p>Rejissor: {movie?.director}</p>
-          <ul className="flex ">
-            Aktyorlar:
-            {movie?.actors.map((actor, i) => (
-              <li key={i}> {actor} </li>
+          <div className="flex flex-wrap items-center gap-2">
+            <p className="font-semibold">Dil:</p>
+            {movie?.languages?.map((lang, i) => (
+              <span key={i} className="text-xl">
+                {getFlagEmoji(lang === "EN" ? "GB" : lang)}
+              </span>
             ))}
-          </ul>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2">
+            <p className="font-semibold">Altyazı:</p>
+            {movie?.subtitles?.map((sub, i) => (
+              <span key={i} className="text-xl">
+                {getFlagEmoji(sub === "EN" ? "GB" : sub)}
+              </span>
+            ))}
+          </div>
+
           <p>
-            Yaş Həddi:{" "}
-            {movie?.ageLimit === "SIXTEEN" ? (
-              <span className="text-xs">16+</span>
-            ) : movie?.ageLimit === "TWELVE" ? (
-              <span className="text-xs">12+</span>
-            ) : movie?.ageLimit === "EIGHTEEN" ? (
-              <span className="text-xs">18+</span>
-            ) : movie?.ageLimit === "SIX" ? (
-              <span className="text-xs">6+</span>
-            ) : null}
+            <span className="font-semibold">Müddət:</span> {movie?.duration} dəq
           </p>
           <p>
-            Nümayiş Tarixi:
-            {new Date(movie?.firstScreeningDate).toLocaleDateString("en-GB")}
+            <span className="font-semibold">İl:</span>{" "}
+            {movie?.firstScreeningDate?.slice(0, 4)}
+          </p>
+          <p>
+            <span className="font-semibold">Ölkə:</span> {movie?.country}
+          </p>
+          <p>
+            <span className="font-semibold">Rejissor:</span> {movie?.director}
+          </p>
+
+          <div>
+            <p className="font-semibold">Aktyorlar:</p>
+            <ul className="list-disc list-inside text-sm text-gray-300">
+              {movie?.actors?.map((actor, i) => (
+                <li key={i}>{actor}</li>
+              ))}
+            </ul>
+          </div>
+
+          <p>
+            <span className="font-semibold">Yaş Həddi:</span>{" "}
+            <span className="text-xs">
+              {
+                {
+                  SIXTEEN: "16+",
+                  TWELVE: "12+",
+                  EIGHTEEN: "18+",
+                  SIX: "6+",
+                }[movie?.ageLimit]
+              }
+            </span>
+          </p>
+
+          <p>
+            <span className="font-semibold">Nümayiş Tarixi:</span>{" "}
+            {movie?.firstScreeningDate
+              ? new Date(movie.firstScreeningDate).toLocaleDateString("en-GB")
+              : ""}
           </p>
         </div>
 
-        <div className="w-full lg:w-[500px]">
-          {movie?.youtubeUrl ? (
+        {movie?.youtubeUrl && (
+          <div className="w-full lg:w-[500px]">
             <iframe
+              title="Trailer"
               width="100%"
               height="280"
               src={movie.youtubeUrl}
               allowFullScreen
               className="rounded-xl"
             ></iframe>
-          ) : null}
-        </div>
+          </div>
+        )}
       </div>
 
-      <div className="mt-10 text-sm text-gray-300 max-w-4xl p-6">
+      <div className="mt-10 text-sm text-gray-300 max-w-4xl mx-auto">
         <p>{movie?.description}</p>
       </div>
 
-      <div className="p-6 rounded-xl mt-10">
-        {theatres.length > 0 && movie
-          ? theatres
-              .filter((theatre) => theatre.movie.id == id)
-              .map((theatre) => <MovieSessions theatre={theatre} />)
-          : null}
+      <div className="mt-12">
+        {theatres.length > 0 &&
+          movie &&
+          theatres
+            .filter((theatre) => theatre.movie.id == id)
+            .map((theatre, i) => <MovieSessions key={i} theatre={theatre} />)}
       </div>
     </div>
   );

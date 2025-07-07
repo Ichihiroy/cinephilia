@@ -40,22 +40,26 @@ const Main = () => {
   return (
     <div>
       <Slider />
-      <div className="p-6 container mx-auto">
-        <div className="flex justify-between items-center text-white text-xl mb-4">
+      <div className="p-4 sm:p-6 container mx-auto">
+        <div className="flex flex-col md:flex-row md:justify-between md:items-center text-white text-xl mb-4 gap-3">
           <h2 className="font-semibold">Siyahı</h2>
           <nav className="space-x-4 text-sm">
             <a href="#" className="border-b-2 border-white">
               Hamısı
             </a>
-            <a href="#">Tezliklə</a>
-            <a href="#">Cədvəl</a>
+            <a href="#" className="hover:underline">
+              Tezliklə
+            </a>
+            <a href="#" className="hover:underline">
+              Cədvəl
+            </a>
           </nav>
         </div>
 
-        <div className="flex justify-between items-center mb-6 text-sm text-gray-300 gap-3">
+        <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-6 gap-3 text-sm text-gray-300">
           <select
             value={lang}
-            className="bg-gray-700 p-2 rounded w-84 text-center"
+            className="bg-gray-700 p-2 rounded w-full md:w-full text-center"
             onChange={(e) => setLang(e.target.value)}
           >
             <option disabled>Dil</option>
@@ -64,9 +68,10 @@ const Main = () => {
             <option>RU</option>
             <option>EN</option>
           </select>
+
           <select
             value={theatreValue}
-            className="bg-gray-700 p-2 rounded w-84 text-center"
+            className="bg-gray-700 p-2 rounded w-full md:w-full text-center"
             onChange={(e) => setTheatreValue(e.target.value)}
           >
             <option disabled>Kinoteatr</option>
@@ -78,21 +83,23 @@ const Main = () => {
               )
             )}
           </select>
+
           <input
             value={date}
             onChange={(e) => setDate(e.target.value)}
             type="date"
-            className="bg-gray-700 p-2 rounded w-84 text-center"
+            className="bg-gray-700 p-2 rounded w-full md:w-full text-center"
           />
+
           <button
-            className="bg-red-700 p-2 rounded w-24 font-bold text-center text-black hover:bg-red-900 transition-colors duration-300"
+            className="bg-red-700 p-2 rounded w-full md:w-24 font-bold text-black hover:bg-red-900 transition-colors duration-300"
             onClick={clear}
           >
             Təmizlə
           </button>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
           {filteredData?.map((movie, index) => (
             <MovieCard key={index} {...movie} />
           ))}
