@@ -14,18 +14,11 @@ const Header = () => {
           </Link>
 
           <div className="hidden md:flex space-x-6 text-sm">
-            <a href="#" className="hover:underline">
-              Kinoteatrlar
-            </a>
-            <a href="#" className="hover:underline">
-              Aksiyalar
-            </a>
-            <a href="#" className="hover:underline">
-              FAQ
-            </a>
-            <a href="#" className="hover:underline">
-              Əlaqə
-            </a>
+            <a className="hover:underline">Kinoteatrlar</a>
+            <a className="hover:underline">Aksiyalar</a>
+            <a className="hover:underline">FAQ</a>
+            <a className="hover:underline">Əlaqə</a>
+            <a className="hover:underline">Profil</a>
           </div>
         </div>
 

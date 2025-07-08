@@ -89,8 +89,11 @@ const Payment = () => {
             ))}
           </p>
           <p className="font-bold text-white mt-4">
-            Ümumi:{" "}
-            {selectedSeats.reduce((acc, [row]) => acc + (row > 5 ? 19 : 9), 0)}
+            Ümumi:{"  "}
+            {selectedSeats.reduce(
+              (acc, [row]) => acc + (row > 5 ? 19 : 9),
+              0
+            )}{" "}
             AZN
           </p>
         </div>

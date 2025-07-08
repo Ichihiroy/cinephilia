@@ -59,7 +59,7 @@ const Main = () => {
         <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-6 gap-3 text-sm text-gray-300">
           <select
             value={lang}
-            className="bg-gray-700 p-2 rounded w-full md:w-full text-center"
+            className="bg-zinc-800 p-2 rounded w-full md:w-full text-center"
             onChange={(e) => setLang(e.target.value)}
           >
             <option disabled>Dil</option>
@@ -71,7 +71,7 @@ const Main = () => {
 
           <select
             value={theatreValue}
-            className="bg-gray-700 p-2 rounded w-full md:w-full text-center"
+            className="bg-zinc-800 p-2 rounded w-full md:w-full text-center"
             onChange={(e) => setTheatreValue(e.target.value)}
           >
             <option disabled>Kinoteatr</option>
@@ -88,7 +88,7 @@ const Main = () => {
             value={date}
             onChange={(e) => setDate(e.target.value)}
             type="date"
-            className="bg-gray-700 p-2 rounded w-full md:w-full text-center"
+            className="bg-zinc-800 p-2 rounded w-full md:w-full text-center"
           />
 
           <button
