@@ -1,20 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { getTheatreById } from "../services/movieServices";
+import { useParams } from "react-router";
 
 const Payment = () => {
   const [agreed, setAgreed] = useState(false);
+  const [theatre, setTheatre] = useState(null);
+
+  const { id } = useParams();
+
+  useEffect(() => {
+    getTheatreById(id).then((data) => {
+      setTheatre(data);
+    });
+  }, [id]);
 
   return (
     <div className="bg-zinc-900 text-white min-h-screen p-8 font-sans">
-      {/* Header */}
       <h1 className="text-2xl font-semibold mb-4">Ödəniş</h1>
 
-      {/* Progress bar */}
       <div className="w-full h-1 bg-gray-700 mb-8">
         <div className="w-12 h-1 bg-red-700"></div>
       </div>
 
       <div className="flex flex-col md:flex-row gap-12">
-        {/* Left form side */}
         <div className="flex-1 space-y-6">
           <div>
             <label className="block mb-2 text-sm text-gray-400">Email</label>
@@ -64,18 +72,15 @@ const Payment = () => {
 
         {/* Right ticket summary */}
         <div className="bg-zinc-800 p-6 rounded-md w-full md:max-w-sm">
-          <h2 className="text-lg font-semibold mb-2">Supermen</h2>
-          <p className="text-sm text-gray-300">Flame Towers</p>
+          <h2 className="text-lg font-semibold mb-2">{theatre?.movie.name}</h2>
+          <p className="text-sm text-gray-300">{theatre?.theatreTitle}</p>
           <p className="text-sm text-gray-300 mt-1">
-            10.07.2025 00:10 &nbsp; Zal: 2
+            10.07.2025 00:10 &nbsp; {theatre?.hallTitle}
           </p>
           <p className="text-sm text-gray-300 mt-1">Sıra 5, Yer 7 (Böyük)</p>
           <p className="font-bold text-white mt-4">Ümumi: 9 AZN</p>
         </div>
       </div>
-
-      {/* Timer on top-right */}
-      <div className="absolute top-4 right-8 text-sm text-gray-400">2:58</div>
     </div>
   );
 };

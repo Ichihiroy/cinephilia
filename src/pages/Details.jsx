@@ -22,7 +22,7 @@ const Details = () => {
   }, [id]);
 
   return (
-    <div className="bg-gray-800 text-white min-h-screen p-4 sm:p-6 ">
+    <div className="bg-zinc-900 text-white min-h-screen p-4 sm:p-6 ">
       <div className="flex flex-col lg:flex-row gap-10">
         <div className="flex-shrink-0 mx-auto lg:mx-0">
           <img

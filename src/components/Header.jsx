@@ -6,7 +6,7 @@ const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="bg-gray-800 shadow-md text-white">
+    <header className="bg-zinc-900 shadow-md text-white">
       <nav className="flex justify-between items-center px-6 py-4 md:px-12">
         <div className="flex items-center space-x-6">
           <Link to="/">

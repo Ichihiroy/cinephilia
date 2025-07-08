@@ -1,13 +1,15 @@
+import React from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { getMovieById, getTheatreById } from "../services/movieServices";
-import React from "react";
+import { useNavigate } from "react-router";
 
 const Theatre = () => {
   const [theatre, setTheatre] = useState(null);
   const [movie, setMovie] = useState(null);
   const [selectedSeats, setSelectedSeats] = useState([]);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     getTheatreById(id).then((data) => {
@@ -47,10 +49,10 @@ const Theatre = () => {
   console.log("Selected Seats:", selectedSeats);
 
   return (
-    <div className="bg-gray-800 text-white min-h-screen p-6">
+    <div className="bg-zinc-900 text-white min-h-screen p-6">
       <h1 className="text-2xl font-semibold mb-4">Oturacaq Seçimi</h1>
 
-      <div className="flex gap-4 bg-gray-700 p-4 rounded-md">
+      <div className="flex gap-4 bg-zinc-800 p-4 rounded-md">
         <img
           src={movie?.image}
           alt={movie?.name}
@@ -94,7 +96,7 @@ const Theatre = () => {
         </div>
       </div>
 
-      <div className="mt-4 bg-gray-700 p-4 rounded-md overflow-x-auto">
+      <div className="mt-4 bg-zinc-800 p-4 rounded-md overflow-x-auto">
         <div className="grid grid-cols-[30px_repeat(12,36px)] gap-3 justify-center items-center">
           {[7, 6, 5, 4, 3, 2, 1].map((row) => (
             <React.Fragment key={row}>
@@ -136,7 +138,10 @@ const Theatre = () => {
             AZN
           </span>
         </div>
-        <button className="bg-red-700 hover:bg-red-800 text-white text-sm px-4 py-1 rounded-full">
+        <button
+          onClick={() => navigate(`/payment/${id}`)}
+          className="bg-red-700 hover:bg-red-800 text-white text-sm px-4 py-1 rounded-full"
+        >
           Bilet Al
         </button>
       </div>

@@ -6,7 +6,7 @@ const MovieSessions = ({ theatre }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="bg-gray-600 text-white flex flex-col sm:flex-row sm:items-center sm:justify-between px-4 sm:px-6 py-3 rounded-md border border-gray-700 mb-4 space-y-3 sm:space-y-0">
+    <div className="bg-zinc-800 text-white flex flex-col sm:flex-row sm:items-center sm:justify-between px-4 sm:px-6 py-3 rounded-md  mb-4 space-y-3 sm:space-y-0">
       <span className="text-sm sm:text-base">{time}</span>
 
       <div className="text-sm sm:text-base text-center sm:flex-1 sm:text-center">

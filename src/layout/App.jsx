@@ -4,7 +4,7 @@ import { Outlet } from "react-router";
 
 const App = () => {
   return (
-    <div className="bg-gray-800 text-white min-h-screen">
+    <div className="bg-zinc-900 text-white min-h-screen">
       <Header />
       <Outlet />
       <Footer />
