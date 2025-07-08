@@ -139,7 +139,9 @@ const Theatre = () => {
           </span>
         </div>
         <button
-          onClick={() => navigate(`/payment/${id}`)}
+          onClick={() =>
+            navigate(`/payment/${id}`, { state: { selectedSeats } })
+          }
           className="bg-red-700 hover:bg-red-800 text-white text-sm px-4 py-1 rounded-full"
         >
           Bilet Al

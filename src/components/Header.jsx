@@ -46,7 +46,7 @@ const Header = () => {
       </nav>
 
       {menuOpen && (
-        <div className="md:hidden px-6 pb-4 space-y-2 text-sm bg-gray-800">
+        <div className="md:hidden px-6 pb-4 space-y-2 text-sm bg-zinc-900">
           <a href="#" className="block hover:underline">
             Kinoteatrlar
           </a>

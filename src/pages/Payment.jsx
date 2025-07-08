@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { getTheatreById } from "../services/movieServices";
-import { useParams } from "react-router";
+import { useParams, useLocation } from "react-router";
 
 const Payment = () => {
   const [agreed, setAgreed] = useState(false);
   const [theatre, setTheatre] = useState(null);
+
+  const location = useLocation();
+  const selectedSeats = location.state?.selectedSeats;
+
+  console.log(selectedSeats);
 
   const { id } = useParams();
 
@@ -70,15 +75,24 @@ const Payment = () => {
           </button>
         </div>
 
-        {/* Right ticket summary */}
         <div className="bg-zinc-800 p-6 rounded-md w-full md:max-w-sm">
           <h2 className="text-lg font-semibold mb-2">{theatre?.movie.name}</h2>
           <p className="text-sm text-gray-300">{theatre?.theatreTitle}</p>
           <p className="text-sm text-gray-300 mt-1">
             10.07.2025 00:10 &nbsp; {theatre?.hallTitle}
           </p>
-          <p className="text-sm text-gray-300 mt-1">Sıra 5, Yer 7 (Böyük)</p>
-          <p className="font-bold text-white mt-4">Ümumi: 9 AZN</p>
+          <p className="text-sm text-gray-300 mt-1">
+            {selectedSeats.map(([row, col]) => (
+              <p>
+                Sıra {row}, Yer {col} {row > 5 ? "(İkili)" : "(Böyük)"}
+              </p>
+            ))}
+          </p>
+          <p className="font-bold text-white mt-4">
+            Ümumi:{" "}
+            {selectedSeats.reduce((acc, [row]) => acc + (row > 5 ? 19 : 9), 0)}{" "}
+            AZN
+          </p>
         </div>
       </div>
     </div>
