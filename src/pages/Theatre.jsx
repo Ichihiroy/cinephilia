@@ -142,7 +142,10 @@ const Theatre = () => {
           onClick={() =>
             navigate(`/payment/${id}`, { state: { selectedSeats } })
           }
-          className="bg-red-700 hover:bg-red-800 text-white text-sm px-4 py-1 rounded-full"
+          className={`${
+            selectedSeats.length == 0 ? "hidden" : ""
+          } bg-red-700 hover:bg-red-800 text-white text-sm px-4 py-1 rounded-full`}
+          disabled={selectedSeats.length === 0}
         >
           Bilet Al
         </button>
