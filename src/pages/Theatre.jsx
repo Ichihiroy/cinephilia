@@ -26,16 +26,22 @@ const Theatre = () => {
     if (target.classList.contains("bg-white")) {
       target.classList.remove("bg-white");
       target.classList.add("bg-red-600");
+      target.classList.add("text-white");
+      setSelectedSeats([...selectedSeats, [row, col]]);
     } else if (target.classList.contains("bg-blue-600")) {
       target.classList.remove("bg-blue-600");
       target.classList.add("bg-red-600");
+      setSelectedSeats([...selectedSeats, [row, col]]);
     } else if (target.classList.contains("bg-red-600")) {
       target.classList.remove("bg-red-600");
-      target.classList.add("bg-white");
-      target.classList;
+      target.classList.remove("text-white");
+      target.classList.contains("double-seats")
+        ? target.classList.add("bg-blue-600")
+        : target.classList.add("bg-white");
+      setSelectedSeats(
+        selectedSeats.filter(([r, c]) => r !== row || c !== col)
+      );
     }
-
-    setSelectedSeats([...selectedSeats, [row, col]]);
   }
 
   console.log("Selected Seats:", selectedSeats);
@@ -120,11 +126,15 @@ const Theatre = () => {
           <div className="flex flex-wrap gap-3 text-sm">
             {selectedSeats.map(([row, col]) => (
               <p>
-                Sıra {row}, Yer {col}
+                Sıra {row}, Yer {col} {row > 5 ? "(İkili)" : "(Böyük)"}
               </p>
             ))}
           </div>
-          <span className=" font-semibold">Ümümi</span>
+          <span className="text-sm font-semibold">
+            Ümümi:{" "}
+            {selectedSeats.reduce((acc, [row]) => acc + (row > 5 ? 19 : 9), 0)}{" "}
+            AZN
+          </span>
         </div>
         <button className="bg-red-700 hover:bg-red-800 text-white text-sm px-4 py-1 rounded-full">
           Bilet Al
