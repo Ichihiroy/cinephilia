@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { getMovieById, getTheatreById } from "../services/movieServices";
 import { useNavigate } from "react-router";
+import { FaCalendarAlt } from "react-icons/fa";
+import { CiClock2 } from "react-icons/ci";
 
 const Theatre = () => {
   const [theatre, setTheatre] = useState(null);
@@ -61,10 +63,12 @@ const Theatre = () => {
         <div className="flex-1">
           <h2 className="text-xl font-semibold">{movie?.name}</h2>
           <p className="text-sm font-medium">{theatre?.type.slice(1)}</p>
-          <p className="text-sm mt-1">
-            📅 {movie?.firstScreeningDate.slice(0, 10)}
+          <p className="text-sm mt-1 flex items-center gap-2">
+            <FaCalendarAlt size={12} /> {movie?.firstScreeningDate.slice(0, 10)}
           </p>
-          <p className="text-sm">🕛 00:10</p>
+          <p className="text-sm flex items-center gap-2">
+            <CiClock2 /> 00:10
+          </p>
           <p className="text-sm">Dil: RU</p>
           <p className="text-sm">Kinoteatr: {theatre?.theatreTitle}</p>
           <p className="text-sm">{theatre?.hallTitle}</p>

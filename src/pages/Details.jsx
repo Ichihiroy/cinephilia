@@ -105,7 +105,7 @@ const Details = () => {
               title="Trailer"
               width="100%"
               height="280"
-              src={movie.youtubeUrl}
+              src={movie?.youtubeUrl.replace("watch?v=", "embed/")}
               allowFullScreen
               className="rounded-xl"
             ></iframe>
