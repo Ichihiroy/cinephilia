@@ -6,6 +6,7 @@ import React from "react";
 const Theatre = () => {
   const [theatre, setTheatre] = useState(null);
   const [movie, setMovie] = useState(null);
+  const [selectedSeats, setSelectedSeats] = useState([]);
   const { id } = useParams();
 
   useEffect(() => {
@@ -20,7 +21,7 @@ const Theatre = () => {
     });
   }, [theatre]);
 
-  function handleClick(e) {
+  function handleClick(e, row, col) {
     const target = e.target;
     if (target.classList.contains("bg-white")) {
       target.classList.remove("bg-white");
@@ -33,7 +34,11 @@ const Theatre = () => {
       target.classList.add("bg-white");
       target.classList;
     }
+
+    setSelectedSeats([...selectedSeats, [row, col]]);
   }
+
+  console.log("Selected Seats:", selectedSeats);
 
   return (
     <div className="bg-gray-800 text-white min-h-screen p-6">
@@ -93,10 +98,10 @@ const Theatre = () => {
                 return (
                   <div
                     key={idx}
-                    onClick={(e) => handleClick(e)}
+                    onClick={(e) => handleClick(e, row, idx + 1)}
                     className={`w-8 h-8 text-sm flex items-center justify-center rounded ${
                       row >= 6
-                        ? "bg-blue-600 w-16"
+                        ? "bg-blue-600 w-8 double-seats"
                         : isAvailable
                         ? "bg-white text-black"
                         : "bg-black"
@@ -109,6 +114,21 @@ const Theatre = () => {
             </React.Fragment>
           ))}
         </div>
+      </div>
+      <div className="flex justify-between items-center mt-6">
+        <div className="flex flex-col  gap-2">
+          <div className="flex flex-wrap gap-3 text-sm">
+            {selectedSeats.map(([row, col]) => (
+              <p>
+                Sıra {row}, Yer {col}
+              </p>
+            ))}
+          </div>
+          <span className=" font-semibold">Ümümi</span>
+        </div>
+        <button className="bg-red-700 hover:bg-red-800 text-white text-sm px-4 py-1 rounded-full">
+          Bilet Al
+        </button>
       </div>
     </div>
   );
