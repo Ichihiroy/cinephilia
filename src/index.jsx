@@ -6,6 +6,7 @@ import Admin from "./layout/Admin";
 import Details from "./pages/Details";
 import Main from "./pages/Main";
 import Theatre from "./pages/Theatre";
+import Payment from "./pages/Payment";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "theatre/:id",
         element: <Theatre />,
+      },
+      {
+        path: "payment/:id",
+        element: <Payment />,
       },
     ],
   },
