@@ -10,7 +10,7 @@ const Header = () => {
       <nav className="flex justify-between items-center px-6 py-4 md:px-12">
         <div className="flex items-center space-x-6">
           <Link to="/">
-            <img src="./img/logo.svg" alt="Park Cinema Logo" className="h-8" />
+            <img src="/img/logo.svg" alt="Park Cinema Logo" className="h-8" />
           </Link>
 
           <div className="hidden md:flex space-x-6 text-sm">
