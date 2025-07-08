@@ -30,10 +30,7 @@ const Header = () => {
         </div>
 
         <div className="flex items-center space-x-4">
-          <div className="flex items-center space-x-1">
-            <span className="text-sm">AZE</span>
-            <FaChevronDown size={12} />
-          </div>
+          <div className="flex items-center space-x-1"></div>
 
           <button
             className="md:hidden"
