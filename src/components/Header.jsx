@@ -37,18 +37,11 @@ const Header = () => {
 
       {menuOpen && (
         <div className="md:hidden px-6 pb-4 space-y-2 text-sm bg-zinc-900">
-          <a href="#" className="block hover:underline">
-            Kinoteatrlar
-          </a>
-          <a href="#" className="block hover:underline">
-            Aksiyalar
-          </a>
-          <a href="#" className="block hover:underline">
-            FAQ
-          </a>
-          <a href="#" className="block hover:underline">
-            Əlaqə
-          </a>
+          <a className="block hover:underline">Kinoteatrlar</a>
+          <a className="block hover:underline">Aksiyalar</a>
+          <a className="block hover:underline">FAQ</a>
+          <a className="block hover:underline">Əlaqə</a>
+          <a className="block hover:underline">Profil</a>
         </div>
       )}
     </header>

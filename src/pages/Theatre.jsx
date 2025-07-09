@@ -127,9 +127,9 @@ const Theatre = () => {
           ))}
         </div>
       </div>
-      <div className="flex justify-between items-center mt-6">
+      <div className="flex justify-between items-end mt-6">
         <div className="flex flex-col  gap-2">
-          <div className="flex flex-wrap gap-3 text-sm">
+          <div className="flex flex-wrap gap-3 text-sm flex-col md:flex-row">
             {selectedSeats.map(([row, col]) => (
               <p>
                 Sıra {row}, Yer {col} {row > 5 ? "(İkili)" : "(Böyük)"}
