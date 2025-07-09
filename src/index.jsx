@@ -7,6 +7,7 @@ import Details from "./pages/Details";
 import Main from "./pages/Main";
 import Theatre from "./pages/Theatre";
 import Payment from "./pages/Payment";
+import RegPage from "./pages/RegPage";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,7 @@ const router = createBrowserRouter([
         path: "payment/:id",
         element: <Payment />,
       },
+      { path: "register", element: <RegPage /> },
     ],
   },
   {

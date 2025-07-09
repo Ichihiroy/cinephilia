@@ -76,27 +76,29 @@ const Theatre = () => {
         </div>
       </div>
 
-      <div className="text-sm mt-2 text-right pr-2">
-        <span className="mr-4">
-          Ailə <strong>6 AZN</strong>
-        </span>
-        <span className="mr-4">
-          Böyük <strong>9 AZN</strong>
-        </span>
-        <span>
-          İkili <strong>19 AZN</strong>
-        </span>
-      </div>
+      <div className="flex justify-between items-end mt-6">
+        <div className="flex gap-6 text-sm  flex-col md:flex-row">
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-4 bg-white rounded"></div> Mövcuddur
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-4 bg-black rounded"></div> Tutulmuş
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-4 h-4 bg-red-600 rounded"></div> Seçilmiş
+          </div>
+        </div>
 
-      <div className="flex gap-6 text-sm my-4">
-        <div className="flex items-center gap-2">
-          <div className="w-4 h-4 bg-white rounded"></div> Mövcuddur
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-4 h-4 bg-black rounded"></div> Tutulmuş
-        </div>
-        <div className="flex items-center gap-2">
-          <div className="w-4 h-4 bg-red-600 rounded"></div> Seçilmiş
+        <div className="text-sm mt-2 text-center pr-2 md:text-right flex flex-col md:flex-row gap-6 items-end">
+          <span className="mr-4">
+            Ailə <strong>6 AZN</strong>
+          </span>
+          <span className="mr-4">
+            Böyük <strong>9 AZN</strong>
+          </span>
+          <span className="mr-4">
+            İkili <strong>19 AZN</strong>
+          </span>
         </div>
       </div>
 
@@ -111,7 +113,7 @@ const Theatre = () => {
                   <div
                     key={idx}
                     onClick={(e) => handleClick(e, row, idx + 1)}
-                    className={`w-8 h-8 text-sm flex items-center justify-center rounded ${
+                    className={`w-8 h-8 text-sm flex items-center cursor-pointer justify-center rounded ${
                       row >= 6
                         ? "bg-blue-600 w-8 double-seats"
                         : isAvailable
@@ -148,7 +150,7 @@ const Theatre = () => {
           }
           className={`${
             selectedSeats.length == 0 ? "hidden" : ""
-          } bg-red-700 hover:bg-red-800 text-white text-sm px-4 py-1 rounded-full`}
+          } bg-red-700 hover:bg-red-800 text-white text-sm px-4 cursor-pointer py-1 rounded-full`}
           disabled={selectedSeats.length === 0}
         >
           Bilet Al
