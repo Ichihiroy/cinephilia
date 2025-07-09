@@ -1,214 +1,149 @@
 import React, { useState } from "react";
-import { Eye, EyeOff, Calendar } from "lucide-react";
+import { LuEye, LuEyeClosed } from "react-icons/lu";
 
-export default function RegPage() {
-  const [formData, setFormData] = useState({
-    name: "",
-    surname: "",
-    phone: "+994 51 511 11 11",
-    birthDate: "mm / dd / yyyy",
-    gender: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
+const RegPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
+  const [userData, setUserData] = useState({
+    name: "",
+    surname: "",
+    phone: "",
+    email: "",
+    birthdate: "",
+  });
 
-  const handleSubmit = () => {
-    console.log("Form submitted:", formData);
-  };
+  function handleChange(e) {
+    setUserData({
+      ...userData,
+      [e.target.name]: e.target.value,
+    });
+  }
+
+  function registerUser() {
+    if (
+      !userData.name ||
+      !userData.surname ||
+      !userData.phone ||
+      !userData.email ||
+      !userData.birthdate
+    ) {
+      alert("Bütün sahələri doldurun!");
+      return;
+    }
+  }
+
+  console.log("userData", userData);
 
   return (
-    <div className="min-h-screen bg-zinc-900 flex items-center justify-center p-8">
-      <div className="w-full max-w-lg">
-        <h1 className="text-white text-3xl font-light mb-12 text-left">
-          Qeydiyyat
-        </h1>
+    <div className="min-h-screen bg-zinc-900 text-white flex items-center justify-center px-4">
+      <div className="w-full max-w-4xl">
+        <h1 className="text-3xl font-semibold mb-8">Qeydiyyat</h1>
+        <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label className="block mb-1">Ad</label>
+            <input
+              name="name"
+              onChange={(e) => handleChange(e)}
+              type="text"
+              className="w-full p-2 bg-transparent border-b border-gray-500 focus:outline-none"
+            />
+          </div>
+          <div>
+            <label className="block mb-1">Soyad</label>
+            <input
+              name="surname"
+              onChange={(e) => handleChange(e)}
+              type="text"
+              className="w-full p-2 bg-transparent border-b border-gray-500 focus:outline-none"
+            />
+          </div>
 
-        <div className="grid grid-cols-2 gap-8">
-          {/* Left Column */}
-          <div className="space-y-8">
-            {/* Name Field */}
-            <div>
-              <label className="block text-gray-400 text-sm mb-3">Ad</label>
+          <div>
+            <label className="block mb-1">Telefon</label>
+            <div className="flex items-center space-x-2">
+              <span className="text-sm text-white font-bold">+994</span>
               <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-                className="w-full bg-transparent border-b border-gray-600 text-white pb-2 focus:border-gray-400 focus:outline-none transition-colors text-base"
-              />
-            </div>
-
-            {/* Phone Field */}
-            <div>
-              <input
-                type="tel"
                 name="phone"
-                placeholder={formData.phone}
-                onChange={handleInputChange}
-                className="w-full bg-transparent border-b border-gray-600 text-gray-400 pb-2 focus:border-gray-400 focus:outline-none transition-colors text-base"
-              />
-            </div>
-
-            {/* Birth Date Field */}
-            <div className="relative">
-              <input
+                onChange={(e) => handleChange(e)}
                 type="text"
-                name="birthDate"
-                value={formData.birthDate}
-                onChange={handleInputChange}
-                className="w-full bg-transparent border-b border-gray-600 text-gray-400 pb-2 pr-8 focus:border-gray-400 focus:outline-none transition-colors text-base"
+                className="flex-1 p-2 bg-transparent border-b border-gray-500 focus:outline-none"
+                placeholder="51 511 11 11"
               />
-              <Calendar
-                className="absolute right-0 bottom-2 text-gray-400"
-                size={20}
-              />
-            </div>
-
-            {/* Gender Radio Buttons */}
-            <div className="flex items-center space-x-6 pt-4">
-              <label className="flex items-center text-gray-400 cursor-pointer">
-                <div className="relative">
-                  <input
-                    type="radio"
-                    name="gender"
-                    value="kisi"
-                    checked={formData.gender === "kisi"}
-                    onChange={handleInputChange}
-                    className="sr-only"
-                  />
-                  <div
-                    className={`w-4 h-4 rounded-full border-2 ${
-                      formData.gender === "kisi"
-                        ? "border-white bg-white"
-                        : "border-gray-400"
-                    }`}
-                  >
-                    {formData.gender === "kisi" && (
-                      <div className="w-2 h-2 bg-gray-900 rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
-                    )}
-                  </div>
-                </div>
-                <span className="ml-2">Kişi</span>
-              </label>
-              <label className="flex items-center text-gray-400 cursor-pointer">
-                <div className="relative">
-                  <input
-                    type="radio"
-                    name="gender"
-                    value="qadin"
-                    checked={formData.gender === "qadin"}
-                    onChange={handleInputChange}
-                    className="sr-only"
-                  />
-                  <div
-                    className={`w-4 h-4 rounded-full border-2 ${
-                      formData.gender === "qadin"
-                        ? "border-white bg-white"
-                        : "border-gray-400"
-                    }`}
-                  >
-                    {formData.gender === "qadin" && (
-                      <div className="w-2 h-2 bg-gray-900 rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
-                    )}
-                  </div>
-                </div>
-                <span className="ml-2">Qadın</span>
-              </label>
             </div>
           </div>
 
-          {/* Right Column */}
-          <div className="space-y-8">
-            {/* Surname Field */}
-            <div>
-              <label className="block text-gray-400 text-sm mb-3">Soyad</label>
-              <input
-                type="text"
-                name="surname"
-                value={formData.surname}
-                onChange={handleInputChange}
-                className="w-full bg-transparent border-b border-gray-600 text-white pb-2 focus:border-gray-400 focus:outline-none transition-colors text-base"
-              />
-            </div>
+          <div>
+            <label className="block mb-1">Elektron poçt</label>
+            <input
+              name="email"
+              onChange={(e) => handleChange(e)}
+              type="email"
+              className="w-full p-2 bg-transparent border-b border-gray-500 focus:outline-none"
+            />
+          </div>
 
-            {/* Email Field */}
-            <div>
-              <label className="block text-gray-400 text-sm mb-3">
-                Elektron poçt
-              </label>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                className="w-full bg-transparent border-b border-gray-600 text-white pb-2 focus:border-gray-400 focus:outline-none transition-colors text-base"
-              />
-            </div>
+          <div>
+            <label className="block mb-1">Doğum Tarixi</label>
+            <input
+              name="birthdate"
+              onChange={(e) => handleChange(e)}
+              type="date"
+              className="w-full p-2 bg-transparent border-b border-gray-500 focus:outline-none"
+            />
+          </div>
 
-            {/* Password Field */}
-            <div className="relative">
-              <label className="block text-gray-400 text-sm mb-3">Şifrə</label>
+          <div className="flex items-center space-x-4 mt-6"></div>
+
+          <div>
+            <label className="block mb-1">Şifrə</label>
+            <div className="flex items-center border-b border-gray-500">
               <input
-                type={showPassword ? "text" : "password"}
                 name="password"
-                value={formData.password}
-                onChange={handleInputChange}
-                className="w-full bg-transparent border-b border-gray-600 text-white pb-2 pr-8 focus:border-gray-400 focus:outline-none transition-colors text-base"
+                onChange={(e) => handleChange(e)}
+                type={showPassword ? "text" : "password"}
+                className="w-full p-2 bg-transparent focus:outline-none"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-0 bottom-2 text-gray-400 hover:text-white transition-colors"
+                className="text-white px-2"
               >
-                {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                {showPassword ? <LuEye /> : <LuEyeClosed />}
               </button>
             </div>
+          </div>
 
-            {/* Confirm Password Field */}
-            <div className="relative">
-              <label className="block text-gray-400 text-sm mb-3">
-                Şifrəni Təsdiqlə
-              </label>
+          <div>
+            <label className="block mb-1">Şifrəni Təsdiqlə</label>
+            <div className="flex items-center border-b border-gray-500">
               <input
                 type={showConfirmPassword ? "text" : "password"}
-                name="confirmPassword"
-                value={formData.confirmPassword}
-                onChange={handleInputChange}
-                className="w-full bg-transparent border-b border-gray-600 text-white pb-2 pr-8 focus:border-gray-400 focus:outline-none transition-colors text-base"
+                className="w-full p-2 bg-transparent focus:outline-none"
               />
               <button
                 type="button"
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                className="absolute right-0 bottom-2 text-gray-400 hover:text-white transition-colors"
+                className="text-white px-2"
               >
-                {showConfirmPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                {showConfirmPassword ? <LuEye /> : <LuEyeClosed />}
               </button>
             </div>
           </div>
-        </div>
 
-        {/* Submit Button */}
-        <div className="mt-12">
-          <button
-            type="button"
-            onClick={handleSubmit}
-            className="w-full bg-red-600 hover:bg-red-700 text-white font-medium py-4 px-6 rounded-lg transition-colors text-lg"
-          >
-            Qeydiyyat
-          </button>
-        </div>
+          <div className="md:col-span-2">
+            <button
+              onClick={registerUser}
+              type="submit"
+              className="w-full bg-red-800 hover:bg-red-700 transition text-white py-2 rounded-full"
+            >
+              Qeydiyyat
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   );
-}
+};
+
+export default RegPage;

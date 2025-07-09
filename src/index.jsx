@@ -8,6 +8,7 @@ import Main from "./pages/Main";
 import Theatre from "./pages/Theatre";
 import Payment from "./pages/Payment";
 import RegPage from "./pages/RegPage";
+import LogInPage from "./pages/LogInPage";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
         element: <Payment />,
       },
       { path: "register", element: <RegPage /> },
+      {
+        path: "login",
+        element: <LogInPage />,
+      },
     ],
   },
   {
