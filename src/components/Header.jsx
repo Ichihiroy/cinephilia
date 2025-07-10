@@ -5,9 +5,7 @@ import { Link } from "react-router";
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const [userStatus, setUserStatus] = useState(
-    JSON.parse(sessionStorage.getItem("user")) ? true : false
-  );
+  // const [userStatus, setUserStatus] = useState(false);
 
   const user = JSON.parse(sessionStorage.getItem("user"));
 

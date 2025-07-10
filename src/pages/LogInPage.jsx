@@ -7,6 +7,8 @@ import { getUserByEmail } from "../services/authServices";
 const LogInPage = () => {
   const [showPassword, setShowPassword] = useState(false);
 
+  // const { setUserStatus } = useContext(UserContext);
+
   const [userData, setUserData] = useState({
     email: "",
     password: "",
@@ -40,9 +42,9 @@ const LogInPage = () => {
       }
 
       toast.success(`Giriş uğurludur! Hoş gəldiniz, ${user.name}!`);
-      setUserData({ email: "", password: "" });
-      sessionStorage.setItem("user", JSON.stringify(user));
       navigate("/");
+      sessionStorage.setItem("user", JSON.stringify(user));
+      setUserData({ email: "", password: "" });
     }
   }
 
