@@ -9,6 +9,7 @@ import Theatre from "./pages/Theatre";
 import Payment from "./pages/Payment";
 import RegPage from "./pages/RegPage";
 import LogInPage from "./pages/LogInPage";
+import Dashboard from "./pages/Dashboard";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: "login",
         element: <LogInPage />,
+      },
+      {
+        path: "dashboard",
+        element: <Dashboard />,
       },
     ],
   },

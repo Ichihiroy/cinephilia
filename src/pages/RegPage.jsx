@@ -63,9 +63,7 @@ const RegPage = () => {
 
       toast.success("Qeydiyyat uğurla tamamlandı!");
 
-      setTimeout(() => {
-        navigate("/");
-      }, 1000);
+      navigate("/");
 
       setUserData({
         name: "",

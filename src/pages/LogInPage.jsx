@@ -1,16 +1,50 @@
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { LuEye, LuEyeClosed } from "react-icons/lu";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import { getUserByEmail } from "../services/authServices";
 
 const LogInPage = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const [userData, setUserData] = useState({
-    name: "",
+    email: "",
     password: "",
   });
 
-  function signIn() {}
+  const navigate = useNavigate();
+
+  function handleChange(e) {
+    setUserData({
+      ...userData,
+      [e.target.name]: e.target.value,
+    });
+  }
+  console.log(userData);
+
+  async function signIn() {
+    if (!userData.email || !userData.password) {
+      toast.error("Bütün sahələri doldurun!");
+      return;
+    } else {
+      const [user] = await getUserByEmail(userData.email);
+      console.log("user", user);
+
+      if (user === undefined) {
+        toast.error("Bu e-poçt ilə istifadəçi tapılmadı!");
+        return;
+      }
+      if (user.password !== userData.password) {
+        toast.error("Şifrə yanlışdır!");
+        return;
+      }
+
+      toast.success(`Giriş uğurludur! Hoş gəldiniz, ${user.name}!`);
+      setUserData({ email: "", password: "" });
+      sessionStorage.setItem("user", JSON.stringify(user));
+      navigate("/");
+    }
+  }
 
   return (
     <div className="min-h-screen bg-zinc-900 text-white flex items-center justify-center px-4">
@@ -20,6 +54,7 @@ const LogInPage = () => {
           <div>
             <label className="block mb-1">Elektron poçt</label>
             <input
+              onChange={(e) => handleChange(e)}
               name="email"
               type="email"
               className="w-full p-2 bg-transparent border-b border-gray-500 focus:outline-none"
@@ -31,6 +66,7 @@ const LogInPage = () => {
             <div className="flex items-center border-b border-gray-500">
               <input
                 name="password"
+                onChange={(e) => handleChange(e)}
                 type={showPassword ? "text" : "password"}
                 className="w-full p-2 bg-transparent focus:outline-none"
               />

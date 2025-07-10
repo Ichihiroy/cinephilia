@@ -5,6 +5,12 @@ import { Link } from "react-router";
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const [userStatus, setUserStatus] = useState(
+    JSON.parse(sessionStorage.getItem("user")) ? true : false
+  );
+
+  const user = JSON.parse(sessionStorage.getItem("user"));
+
   return (
     <header className="bg-zinc-900 shadow-md text-white">
       <nav className="flex justify-between items-center px-6 py-4 md:px-12">
@@ -18,9 +24,16 @@ const Header = () => {
             <a className="hover:underline">Aksiyalar</a>
             <a className="hover:underline">FAQ</a>
             <a className="hover:underline">Əlaqə</a>
-            <Link to="login" className="hover:underline">
-              Profil
-            </Link>
+
+            {user ? (
+              <Link to="/dashboard" className="hover:underline">
+                {user.name} {user.surname}
+              </Link>
+            ) : (
+              <Link to="/login" className="hover:underline">
+                Giriş
+              </Link>
+            )}
           </div>
         </div>
 
@@ -43,7 +56,9 @@ const Header = () => {
           <a className="block hover:underline">Aksiyalar</a>
           <a className="block hover:underline">FAQ</a>
           <a className="block hover:underline">Əlaqə</a>
-          <a className="block hover:underline">Profil</a>
+          <Link to="login" className="block hover:underline">
+            Profil
+          </Link>
         </div>
       )}
     </header>
