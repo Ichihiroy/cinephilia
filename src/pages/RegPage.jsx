@@ -16,6 +16,7 @@ const RegPage = () => {
     name: "",
     surname: "",
     phone: "",
+    password: "",
     email: "",
     birthdate: "",
   });
@@ -70,6 +71,7 @@ const RegPage = () => {
         name: "",
         surname: "",
         phone: "",
+        password: "",
         email: "",
         birthdate: "",
       });

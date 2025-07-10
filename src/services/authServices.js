@@ -19,3 +19,12 @@ export const getAllUsers = async () => {
     console.error("Error fetching users:", err);
   }
 };
+
+export const getUserByEmail = async (email) => {
+  try {
+    const res = await axios.get(`${API_URL}/users?email=${email}`);
+    return res.data;
+  } catch (err) {
+    console.error("Error fetching user by email:", err);
+  }
+};

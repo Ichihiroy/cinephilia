@@ -18,7 +18,7 @@ const Header = () => {
             <a className="hover:underline">Aksiyalar</a>
             <a className="hover:underline">FAQ</a>
             <a className="hover:underline">Əlaqə</a>
-            <Link to="register" className="hover:underline">
+            <Link to="login" className="hover:underline">
               Profil
             </Link>
           </div>
