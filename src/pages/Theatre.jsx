@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { getMovieById, getTheatreById } from "../services/movieServices";
+import { getMovieById, getTheatreById } from "../services/movieServices.js";
 import { useNavigate } from "react-router";
 import { FaCalendarAlt } from "react-icons/fa";
 import { CiClock2 } from "react-icons/ci";

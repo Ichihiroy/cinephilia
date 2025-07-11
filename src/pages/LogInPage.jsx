@@ -2,7 +2,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { LuEye, LuEyeClosed } from "react-icons/lu";
 import { Link, useNavigate } from "react-router";
-import { getUserByEmail } from "../services/authServices";
+import { getUserByEmail } from "../services/authServices.js";
 
 const LogInPage = () => {
   const [showPassword, setShowPassword] = useState(false);
