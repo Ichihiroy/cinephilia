@@ -8,13 +8,13 @@ export default function Slider() {
     <>
       <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
         <SwiperSlide>
-          <img src="public/img/slider1.png" />
+          <img src="/img/slider1.png" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="public/img/slider2.png" />
+          <img src="/img/slider2.png" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="public/img/slider3.png" />
+          <img src="/img/slider3.png" />
         </SwiperSlide>
       </Swiper>
     </>
