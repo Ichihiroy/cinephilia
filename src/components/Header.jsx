@@ -5,8 +5,6 @@ import { Link } from "react-router";
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // const [userStatus, setUserStatus] = useState(false);
-
   const user = JSON.parse(sessionStorage.getItem("user"));
 
   return (
@@ -54,9 +52,23 @@ const Header = () => {
           <a className="block hover:underline">Aksiyalar</a>
           <a className="block hover:underline">FAQ</a>
           <a className="block hover:underline">Əlaqə</a>
-          <Link to="login" className="block hover:underline">
-            Profil
-          </Link>
+          {user ? (
+            <Link
+              to="/dashboard"
+              className="hover:underline"
+              onClick={() => setMenuOpen(false)}
+            >
+              {user.name} {user.surname}
+            </Link>
+          ) : (
+            <Link
+              to="/login"
+              className="hover:underline"
+              onClick={() => setMenuOpen(false)}
+            >
+              Giriş
+            </Link>
+          )}
         </div>
       )}
     </header>
