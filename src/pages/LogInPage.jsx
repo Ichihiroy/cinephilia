@@ -7,8 +7,6 @@ import { getUserByEmail } from "../services/authServices";
 const LogInPage = () => {
   const [showPassword, setShowPassword] = useState(false);
 
-  // const { setUserStatus } = useContext(UserContext);
-
   const [userData, setUserData] = useState({
     email: "",
     password: "",
