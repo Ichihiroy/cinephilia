@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { LuEye, LuEyeClosed } from "react-icons/lu";
-import { getAllUsers, postUser } from "../services/authServices";
+import { getAllUsers, postUser } from "../services/authServices.js";
 import { useNavigate } from "react-router";
 
 const RegPage = () => {

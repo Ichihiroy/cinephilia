@@ -1,5 +1,5 @@
 import { useParams } from "react-router";
-import { getAllTheatres, getMovieById } from "../services/movieServices";
+import { getAllTheatres, getMovieById } from "../services/movieServices.js";
 import MovieSessions from "../components/MovieSessions";
 import { useState, useEffect } from "react";
 

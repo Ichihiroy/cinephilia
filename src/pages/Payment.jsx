@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getTheatreById } from "../services/movieServices";
+import { getTheatreById } from "../services/movieServices.js";
 import { useParams, useLocation } from "react-router";
 
 const Payment = () => {
