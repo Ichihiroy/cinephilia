@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useLocation } from "react-router";
-import { getTheatreById } from "../services/movieServices";
+import { getTheatreById } from "../services/MovieServices";
 
 const Payment = () => {
   const [agreed, setAgreed] = useState(false);
