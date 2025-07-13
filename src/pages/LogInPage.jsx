@@ -40,8 +40,8 @@ const LogInPage = () => {
       }
 
       toast.success(`Giriş uğurludur! Hoş gəldiniz, ${user.name}!`);
-      navigate("/");
       sessionStorage.setItem("user", JSON.stringify(user));
+      navigate("/");
       setUserData({ email: "", password: "" });
     }
   }
